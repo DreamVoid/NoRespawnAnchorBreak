@@ -1,8 +1,4 @@
-package me.cookiemonster.creeperconfetti.events;
-
-import me.cookiemonster.creeperconfetti.CreeperConfetti;
-
-import java.util.concurrent.ThreadLocalRandom;
+package org.mineblock.creeperfirework;
 
 import org.bukkit.*;
 import org.bukkit.entity.Creeper;
@@ -12,14 +8,17 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
-public class CreeperExplodeListener implements Listener {
+public class main extends JavaPlugin implements Listener {
+    @Override
+    public void onEnable() {
+        getServer().getPluginManager().registerEvents(this, this);
+    }
+
     @EventHandler
     public void onCreeperExplode(EntityExplodeEvent e){
-    	double random = ThreadLocalRandom.current().nextDouble() * 100;
-    	// if random not less than confetti_chance, stop
-    	if (random >= CreeperConfetti.getInstance().getConfig().getDouble("confetti_chance")) return;
         if(e.getEntityType().equals(EntityType.CREEPER)){
             e.setCancelled(true);
             Creeper c = (Creeper)e.getEntity();
@@ -31,12 +30,7 @@ public class CreeperExplodeListener implements Listener {
             fwm.addEffect(FireworkEffect.builder().withColor(Color.RED, Color.YELLOW).flicker(true).build());
             fw.setFireworkMeta(fwm);
             loc.getWorld().playSound(loc, Sound.ENTITY_GENERIC_EXPLODE, SoundCategory.HOSTILE, 2, 1);
-            Bukkit.getScheduler().scheduleSyncDelayedTask(CreeperConfetti.getInstance(), new Runnable() {
-                @Override
-                public void run() {
-                    fw.detonate();
-                }
-            }, 1);
+            Bukkit.getScheduler().scheduleSyncDelayedTask(this, fw::detonate, 1);
         }
     }
 }
