@@ -1,2 +1,2 @@
-# MineBlockCreeperFirework
-MineBlock 苦力怕爆炸生成烟花插件，基于 [CreeperConfetti](https://github.com/askrealcookie/CreeperConfetti) 修改。
+# NoRespawnAnchorBreak
+[灵感来源](https://www.mcbbs.net/thread-1370995-1-1.html)

@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cc.mineblock</groupId>
-    <artifactId>MineBlockCreeperFirework</artifactId>
+    <groupId>me.dreamvoid</groupId>
+    <artifactId>NoRespawnAnchorBreak</artifactId>
     <version>1.0</version>
 
     <repositories>
